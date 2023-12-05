@@ -7,6 +7,21 @@ can be used to access AFP shares exposed by multiple devices, notably Mac OS X
 computers, linux devices exporting shares with netatalk, Apple Airport and 
 Time Capsule products as well as other NAS devices from various vendors.
 
+### This Fork
+
+I forked this from the unmaintained original in order to get a reliable
+cross-platform Docker build from it. I've updated `config.guess` to support newer
+hardware, and added a Dockerfile that yields a cross-platform build. 
+
+### Docker
+
+You can build the `Dockerfile` in the usual way, and then run it with:
+
+```
+docker run -d --device /dev/fuse --cap-add SYS_ADMIN -v <desired mount>:/mnt <your tag> mount_afp 'afp://<user>:<password>@<host>' /mnt
+```
+
+The host machine must have Fuse installed already. 
 
 ### Changelog
 
